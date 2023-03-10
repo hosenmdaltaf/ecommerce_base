@@ -18,6 +18,21 @@ class Basket:
             basket = self.session[settings.BASKET_SESSION_ID] = {}
         self.basket = basket
 
+
+    # def add(self, product_id, quantity=1, update_quantity=False):
+    #     product_id = str(product_id)
+        
+    #     if product_id not in self.cart:
+    #         self.cart[product_id] = {'quantity': 1, 'id': product_id}
+        
+    #     if update_quantity:
+    #         self.cart[product_id]['quantity'] += int(quantity)
+
+    #         if self.cart[product_id]['quantity'] == 0:
+    #             self.remove(product_id)
+                        
+    #     self.save()
+
     def add(self, product, qty):
         """
         Adding and updating the users basket session data
@@ -25,10 +40,10 @@ class Basket:
         product_id = str(product.id)
 
         if product_id in self.basket:
-            self.basket[product_id]["qty"] = qty
+            # self.basket[product_id]["qty"] = qty
+            self.basket[product_id]["qty"] += int(qty)
         else:
             self.basket[product_id] = {"price": str(product.regular_price), "qty": qty}
-
         self.save()
 
     def __iter__(self):
@@ -53,6 +68,14 @@ class Basket:
         Get the basket data and count the qty of items
         """
         return sum(item["qty"] for item in self.basket.values())
+    
+        #   if product_id not in self.cart:
+        #     self.cart[product_id] = {'quantity': 1, 'id': product_id}
+        
+        # if update_quantity:
+        #     self.cart[product_id]['quantity'] += int(quantity)
+        # if self.cart[product_id]['quantity'] == 0:
+        #         self.remove(product_id)   
 
     def update(self, product, qty):
         """
@@ -60,8 +83,10 @@ class Basket:
         """
         product_id = str(product)
         if product_id in self.basket:
-            self.basket[product_id]["qty"] = qty
+            # self.basket[product_id]["qty"] = qty
+            self.basket[product_id]["qty"] += int(qty)
         self.save()
+
 
     def get_subtotal_price(self):
         return sum(Decimal(item["price"]) * item["qty"] for item in self.basket.values())
@@ -108,3 +133,67 @@ class Basket:
 
     def save(self):
         self.session.modified = True
+
+
+
+
+
+
+
+
+
+
+# class Cart(object):
+#     def __init__(self, request):
+#         self.session = request.session
+#         cart = self.session.get(settings.CART_SESSION_ID)
+
+#         if not cart:
+#             cart = self.session[settings.CART_SESSION_ID] = {}
+        
+#         self.cart = cart
+
+#     def __iter__(self):
+#         for p in self.cart.keys():
+#             self.cart[str(p)]['product'] = Product.objects.get(pk=p)
+        
+#         for item in self.cart.values():
+#             item['total_price'] = item['product'].price * item['quantity']
+
+#             yield item
+    
+#     def __len__(self):
+#         return sum(item['quantity'] for item in self.cart.values())
+    
+#     def add(self, product_id, quantity=1, update_quantity=False):
+#         product_id = str(product_id)
+        
+#         if product_id not in self.cart:
+#             self.cart[product_id] = {'quantity': 1, 'id': product_id}
+        
+#         if update_quantity:
+#             self.cart[product_id]['quantity'] += int(quantity)
+
+#             if self.cart[product_id]['quantity'] == 0:
+#                 self.remove(product_id)
+                        
+#         self.save()
+    
+#     def remove(self, product_id):
+#         if product_id in self.cart:
+#             del self.cart[product_id]
+#             self.save()
+
+#     def save(self):
+#         self.session[settings.CART_SESSION_ID] = self.cart
+#         self.session.modified = True
+    
+#     def clear(self):
+#         del self.session[settings.CART_SESSION_ID]
+#         self.session.modified = True
+    
+#     def get_total_cost(self):
+#         for p in self.cart.keys():
+#             self.cart[str(p)]['product'] = Product.objects.get(pk=p)
+
+#         return sum(item['quantity'] * item['product'].price for item in self.cart.values())
