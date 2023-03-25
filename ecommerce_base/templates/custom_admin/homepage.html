@@ -1,0 +1,203 @@
+{% extends 'custom_admin/admin_base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="content container-fluid">
+
+    <div class="page-header"
+        style="padding-bottom: 0!important;border-bottom: 0!important;margin-bottom: 1.25rem!important;">
+        <div class="row align-items-center">
+            <div class="col-sm mb-2 mb-sm-0">
+                <h1 class="page-header-title">Welcome, admin.</h1>
+                <p>Welcome Admin, here is your business statistics.</p>
+            </div>
+            <div class="col-sm mb-2 mb-sm-0" style="height: 25px">
+                <label class="badge badge-soft-success float-right">
+                    Software Version : 6.2
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card card-body mb-3 mb-lg-5">
+        <div class="row gx-2 gx-lg-3 mb-2">
+            <div class="col-9">
+                <h4><i style="font-size: 30px" class="tio-chart-bar-4"></i>Dashboard order statistics</h4>
+            </div>
+            <div class="col-3">
+                <select class="custom-select" name="statistics_type" onchange="order_stats_update(this.value)">
+                    <option value="overall">
+                        Overall Statistics
+                    </option>
+                    <option value="today">
+                        Today s Statistics
+                    </option>
+                    <option value="this_month">
+                        This Month s Statistics
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="row gx-2 gx-lg-3" id="order_stats">
+            <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+
+                <a class="card card-hover-shadow h-100"
+                    href="https://hexacom-admin.6amtech.com/admin/orders/list/pending"
+                    style="background: #3E215D">
+                    <div class="card-body">
+                        <h6 class="card-subtitle" style="color: white!important;">Pending</h6>
+                        <div class="row align-items-center gx-2 mb-1">
+                            <div class="col-6">
+                                <span class="card-title h2" style="color: white!important;">
+                                    17
+                                </span>
+                            </div>
+                            <div class="col-6 mt-2">
+                                <i class="tio-shopping-cart ml-6" style="font-size: 30px;color: white"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                </a>
+
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+
+                <a class="card card-hover-shadow h-100"
+                    href="https://hexacom-admin.6amtech.com/admin/orders/list/confirmed"
+                    style="background: #001E6C">
+                    <div class="card-body">
+                        <h6 class="card-subtitle" style="color: white!important;">Confirmed</h6>
+                        <div class="row align-items-center gx-2 mb-1">
+                            <div class="col-6">
+                                <span class="card-title h2" style="color: white!important;">
+                                    4
+                                </span>
+                            </div>
+                            <div class="col-6 mt-2">
+                                <i class="tio-checkmark-circle ml-6" style="font-size: 30px;color: white"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                </a>
+
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+
+                <a class="card card-hover-shadow h-100"
+                    href="https://hexacom-admin.6amtech.com/admin/orders/list/processing"
+                    style="background: #053742">
+                    <div class="card-body">
+                        <h6 class="card-subtitle" style="color: white!important;">Processing</h6>
+                        <div class="row align-items-center gx-2 mb-1">
+                            <div class="col-6">
+                                <span class="card-title h2" style="color: white!important;">
+                                    1
+                                </span>
+                            </div>
+                            <div class="col-6 mt-2">
+                                <i class="tio-time ml-6" style="font-size: 30px;color: white"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                </a>
+
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+
+                <a class="card card-hover-shadow h-100"
+                    href="https://hexacom-admin.6amtech.com/admin/orders/list/out_for_delivery"
+                    style="background: #343A40">
+                    <div class="card-body">
+                        <h6 class="card-subtitle" style="color: white!important;">Out for delivery</h6>
+                        <div class="row align-items-center gx-2 mb-1">
+                            <div class="col-6">
+                                <span class="card-title h2" style="color: white!important;">
+                                    2
+                                </span>
+                            </div>
+                            <div class="col-6 mt-2">
+                                <i class="tio-bike ml-6" style="font-size: 30px;color: white"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                </a>
+
+            </div>
+            <div class="col-12">
+                <div class="card card-body" style="background: #FEF7DC!important;">
+                    <div class="row gx-lg-4">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="media" style="cursor: pointer"
+                                onclick="location.href='https://hexacom-admin.6amtech.com/admin/orders/list/all'">
+                                <div class="media-body">
+                                    <h6 class="card-subtitle">All</h6>
+                                    <span class="card-title h3">44</span>
+                                </div>
+                                <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
+                                    <i class="tio-remove-from-trash"></i>
+                                </span>
+                            </div>
+                            <div class="d-lg-none">
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3 column-divider-sm">
+                            <div class="media" style="cursor: pointer"
+                                onclick="location.href='https://hexacom-admin.6amtech.com/admin/orders/list/delivered'">
+                                <div class="media-body">
+                                    <h6 class="card-subtitle">Delivered</h6>
+                                    <span class="card-title h3">
+                                        12
+                                    </span>
+                                </div>
+                                <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
+                                    <i class="tio-checkmark-circle-outlined"></i>
+                                </span>
+                            </div>
+                            <div class="d-lg-none">
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3 column-divider-lg">
+                            <div class="media" style="cursor: pointer"
+                                onclick="location.href='https://hexacom-admin.6amtech.com/admin/orders/list/returned'">
+                                <div class="media-body">
+                                    <h6 class="card-subtitle">Returned</h6>
+                                    <span class="card-title h3">0</span>
+                                </div>
+                                <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
+                                    <i class="tio-history"></i>
+                                </span>
+                            </div>
+                            <div class="d-lg-none">
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3 column-divider-sm">
+                            <div class="media" style="cursor: pointer"
+                                onclick="location.href='https://hexacom-admin.6amtech.com/admin/orders/list/failed'">
+                                <div class="media-body">
+                                    <h6 class="card-subtitle">Failed</h6>
+                                    <span class="card-title h3">2</span>
+                                </div>
+                                <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
+                                    <i class="tio-message-failed"></i>
+                                </span>
+                            </div>
+                            <div class="d-lg-none">
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,783 @@
+{% extends 'custom_admin/admin_base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="content container-fluid">
+
+    <div class="page-header">
+        <div class="row align-items-center mb-3">
+            <div class="col-9">
+                <h1 class="page-header-title">Orders <span
+                        class="badge badge-soft-dark ml-2 text-primary">44</span></h1>
+            </div>
+            <div class="col-3">
+
+                <select class="custom-select custom-select-sm" name="branch"
+                    onchange="filter_branch_orders(this.value)">
+                    <option disabled>--- Select Branch ---</option>
+                    <option value="0" selected>All Branch</option>
+                    <option value="1">Main Branch</option>
+                    <option value="10">DC store</option>
+                    <option value="11">Farmgate</option>
+                    <option value="12">Dakshinkhan</option>
+                </select>
+
+            </div>
+        </div>
+
+
+        <div class="js-nav-scroller hs-nav-scroller-horizontal">
+            <span class="hs-nav-scroller-arrow-prev" style="display: none;">
+                <a class="hs-nav-scroller-arrow-link" href="javascript:;">
+                    <i class="tio-chevron-left"></i>
+                </a>
+            </span>
+            <span class="hs-nav-scroller-arrow-next" style="display: none;">
+                <a class="hs-nav-scroller-arrow-link" href="javascript:;">
+                    <i class="tio-chevron-right"></i>
+                </a>
+            </span>
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-header">
+            <div class="row justify-content-end align-items-center flex-grow-1">
+                <div class="">
+                    <form action="https://hexacom-admin.6amtech.com/admin/orders/list/all" method="GET">
+                        <div class="input-group">
+                            <input id="datatableSearch_" type="search" name="search" class="form-control"
+                                placeholder="Search" aria-label="Search" value="" required autocomplete="off">
+                            <div class="input-group-append">
+                                <button type="submit" class="input-group-text"><i class="tio-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="table-responsive datatable-custom">
+            <table
+                class="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
+                style="width: 100%">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="">
+                            #
+                        </th>
+                        <th class="table-column-pl-0">Order</th>
+                        <th>Date</th>
+                        <th>Customer</th>
+                        <th>Branch</th>
+                        <th>Payment Status</th>
+                        <th>Total</th>
+                        <th>Order Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="set-rows">
+                    <tr class="status-pending class-all">
+                        <td class="">
+                            1
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a href="https://hexacom-admin.6amtech.com/admin/orders/details/100045">100045</a>
+                        </td>
+                        <td>17 Nov 2021</td>
+                        <td>
+                            <a class="text-body text-capitalize"
+                                href="https://hexacom-admin.6amtech.com/admin/customer/view/18">Mehedi Hasan</a>
+                        </td>
+                        <td>
+                            <label class="badge badge-soft-primary">Main Branch</label>
+                        </td>
+                        <td>
+                            <span class="badge badge-soft-danger">
+                                <span class="legend-indicator bg-danger"></span>Unpaid
+                            </span>
+                        </td>
+                        <td>1,267.19$</td>
+                        <td class="text-capitalize">
+                            <span class="badge badge-soft-info ml-2 ml-sm-3">
+                                <span class="legend-indicator bg-info"></span>Pending
+                            </span>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="tio-settings"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/details/100045"><i
+                                            class="tio-visible"></i> View</a>
+                                    <a class="dropdown-item" target="_blank"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/generate-invoice/100045"><i
+                                            class="tio-download"></i> Invoice</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="status-failed class-all">
+                        <td class="">
+                            2
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a href="https://hexacom-admin.6amtech.com/admin/orders/details/100044">100044</a>
+                        </td>
+                        <td>17 Nov 2021</td>
+                        <td>
+                            <a class="text-body text-capitalize"
+                                href="https://hexacom-admin.6amtech.com/admin/customer/view/17">J R</a>
+                        </td>
+                        <td>
+                            <label class="badge badge-soft-primary">Main Branch</label>
+                        </td>
+                        <td>
+                            <span class="badge badge-soft-danger">
+                                <span class="legend-indicator bg-danger"></span>Unpaid
+                            </span>
+                        </td>
+                        <td>3,337.75$</td>
+                        <td class="text-capitalize">
+                            <span class="badge badge-soft-danger ml-2 ml-sm-3">
+                                <span class="legend-indicator bg-danger"></span>failed
+                            </span>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="tio-settings"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/details/100044"><i
+                                            class="tio-visible"></i> View</a>
+                                    <a class="dropdown-item" target="_blank"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/generate-invoice/100044"><i
+                                            class="tio-download"></i> Invoice</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="status-pending class-all">
+                        <td class="">
+                            3
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a href="https://hexacom-admin.6amtech.com/admin/orders/details/100042">100042</a>
+                        </td>
+                        <td>17 Nov 2021</td>
+                        <td>
+                            <a class="text-body text-capitalize"
+                                href="https://hexacom-admin.6amtech.com/admin/customer/view/17">J R</a>
+                        </td>
+                        <td>
+                            <label class="badge badge-soft-primary">Main Branch</label>
+                        </td>
+                        <td>
+                            <span class="badge badge-soft-danger">
+                                <span class="legend-indicator bg-danger"></span>Unpaid
+                            </span>
+                        </td>
+                        <td>807.05$</td>
+                        <td class="text-capitalize">
+                            <span class="badge badge-soft-info ml-2 ml-sm-3">
+                                <span class="legend-indicator bg-info"></span>Pending
+                            </span>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="tio-settings"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/details/100042"><i
+                                            class="tio-visible"></i> View</a>
+                                    <a class="dropdown-item" target="_blank"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/generate-invoice/100042"><i
+                                            class="tio-download"></i> Invoice</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="status-pending class-all">
+                        <td class="">
+                            4
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a href="https://hexacom-admin.6amtech.com/admin/orders/details/100041">100041</a>
+                        </td>
+                        <td>13 Oct 2021</td>
+                        <td>
+                            <a class="text-body text-capitalize"
+                                href="https://hexacom-admin.6amtech.com/admin/customer/view/15">Abdul Aziz
+                                Sarker</a>
+                        </td>
+                        <td>
+                            <label class="badge badge-soft-primary">Dakshinkhan</label>
+                        </td>
+                        <td>
+                            <span class="badge badge-soft-danger">
+                                <span class="legend-indicator bg-danger"></span>Unpaid
+                            </span>
+                        </td>
+                        <td>13,510.00$</td>
+                        <td class="text-capitalize">
+                            <span class="badge badge-soft-info ml-2 ml-sm-3">
+                                <span class="legend-indicator bg-info"></span>Pending
+                            </span>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="tio-settings"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/details/100041"><i
+                                            class="tio-visible"></i> View</a>
+                                    <a class="dropdown-item" target="_blank"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/generate-invoice/100041"><i
+                                            class="tio-download"></i> Invoice</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="status-pending class-all">
+                        <td class="">
+                            5
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a href="https://hexacom-admin.6amtech.com/admin/orders/details/100040">100040</a>
+                        </td>
+                        <td>13 Oct 2021</td>
+                        <td>
+                            <a class="text-body text-capitalize"
+                                href="https://hexacom-admin.6amtech.com/admin/customer/view/16">Pili 124</a>
+                        </td>
+                        <td>
+                            <label class="badge badge-soft-primary">Farmgate</label>
+                        </td>
+                        <td>
+                            <span class="badge badge-soft-danger">
+                                <span class="legend-indicator bg-danger"></span>Unpaid
+                            </span>
+                        </td>
+                        <td>1,250.00$</td>
+                        <td class="text-capitalize">
+                            <span class="badge badge-soft-info ml-2 ml-sm-3">
+                                <span class="legend-indicator bg-info"></span>Pending
+                            </span>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="tio-settings"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/details/100040"><i
+                                            class="tio-visible"></i> View</a>
+                                    <a class="dropdown-item" target="_blank"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/generate-invoice/100040"><i
+                                            class="tio-download"></i> Invoice</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="status-pending class-all">
+                        <td class="">
+                            6
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a href="https://hexacom-admin.6amtech.com/admin/orders/details/100039">100039</a>
+                        </td>
+                        <td>13 Oct 2021</td>
+                        <td>
+                            <a class="text-body text-capitalize"
+                                href="https://hexacom-admin.6amtech.com/admin/customer/view/16">Pili 124</a>
+                        </td>
+                        <td>
+                            <label class="badge badge-soft-primary">Farmgate</label>
+                        </td>
+                        <td>
+                            <span class="badge badge-soft-danger">
+                                <span class="legend-indicator bg-danger"></span>Unpaid
+                            </span>
+                        </td>
+                        <td>27,010.00$</td>
+                        <td class="text-capitalize">
+                            <span class="badge badge-soft-info ml-2 ml-sm-3">
+                                <span class="legend-indicator bg-info"></span>Pending
+                            </span>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="tio-settings"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/details/100039"><i
+                                            class="tio-visible"></i> View</a>
+                                    <a class="dropdown-item" target="_blank"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/generate-invoice/100039"><i
+                                            class="tio-download"></i> Invoice</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="status-pending class-all">
+                        <td class="">
+                            7
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a href="https://hexacom-admin.6amtech.com/admin/orders/details/100038">100038</a>
+                        </td>
+                        <td>12 Jun 2021</td>
+                        <td>
+                            <a class="text-body text-capitalize"
+                                href="https://hexacom-admin.6amtech.com/admin/customer/view/12">Sabrina
+                                Proma</a>
+                        </td>
+                        <td>
+                            <label class="badge badge-soft-primary">Main Branch</label>
+                        </td>
+                        <td>
+                            <span class="badge badge-soft-danger">
+                                <span class="legend-indicator bg-danger"></span>Unpaid
+                            </span>
+                        </td>
+                        <td>9,354.00$</td>
+                        <td class="text-capitalize">
+                            <span class="badge badge-soft-info ml-2 ml-sm-3">
+                                <span class="legend-indicator bg-info"></span>Pending
+                            </span>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="tio-settings"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/details/100038"><i
+                                            class="tio-visible"></i> View</a>
+                                    <a class="dropdown-item" target="_blank"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/generate-invoice/100038"><i
+                                            class="tio-download"></i> Invoice</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="status-confirmed class-all">
+                        <td class="">
+                            8
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a href="https://hexacom-admin.6amtech.com/admin/orders/details/100037">100037</a>
+                        </td>
+                        <td>12 Jun 2021</td>
+                        <td>
+                            <a class="text-body text-capitalize"
+                                href="https://hexacom-admin.6amtech.com/admin/customer/view/12">Sabrina
+                                Proma</a>
+                        </td>
+                        <td>
+                            <label class="badge badge-soft-primary">Main Branch</label>
+                        </td>
+                        <td>
+                            <span class="badge badge-soft-success">
+                                <span class="legend-indicator bg-success"></span>Paid
+                            </span>
+                        </td>
+                        <td>1,310.00$</td>
+                        <td class="text-capitalize">
+                            <span class="badge badge-soft-info ml-2 ml-sm-3">
+                                <span class="legend-indicator bg-info"></span>Confirmed
+                            </span>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="tio-settings"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/details/100037"><i
+                                            class="tio-visible"></i> View</a>
+                                    <a class="dropdown-item" target="_blank"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/generate-invoice/100037"><i
+                                            class="tio-download"></i> Invoice</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="status-pending class-all">
+                        <td class="">
+                            9
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a href="https://hexacom-admin.6amtech.com/admin/orders/details/100036">100036</a>
+                        </td>
+                        <td>12 Jun 2021</td>
+                        <td>
+                            <a class="text-body text-capitalize"
+                                href="https://hexacom-admin.6amtech.com/admin/customer/view/12">Sabrina
+                                Proma</a>
+                        </td>
+                        <td>
+                            <label class="badge badge-soft-primary">Main Branch</label>
+                        </td>
+                        <td>
+                            <span class="badge badge-soft-danger">
+                                <span class="legend-indicator bg-danger"></span>Unpaid
+                            </span>
+                        </td>
+                        <td>132.00$</td>
+                        <td class="text-capitalize">
+                            <span class="badge badge-soft-info ml-2 ml-sm-3">
+                                <span class="legend-indicator bg-info"></span>Pending
+                            </span>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="tio-settings"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/details/100036"><i
+                                            class="tio-visible"></i> View</a>
+                                    <a class="dropdown-item" target="_blank"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/generate-invoice/100036"><i
+                                            class="tio-download"></i> Invoice</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="status-confirmed class-all">
+                        <td class="">
+                            10
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a href="https://hexacom-admin.6amtech.com/admin/orders/details/100035">100035</a>
+                        </td>
+                        <td>12 Jun 2021</td>
+                        <td>
+                            <a class="text-body text-capitalize"
+                                href="https://hexacom-admin.6amtech.com/admin/customer/view/12">Sabrina
+                                Proma</a>
+                        </td>
+                        <td>
+                            <label class="badge badge-soft-primary">Main Branch</label>
+                        </td>
+                        <td>
+                            <span class="badge badge-soft-success">
+                                <span class="legend-indicator bg-success"></span>Paid
+                            </span>
+                        </td>
+                        <td>129.40$</td>
+                        <td class="text-capitalize">
+                            <span class="badge badge-soft-info ml-2 ml-sm-3">
+                                <span class="legend-indicator bg-info"></span>Confirmed
+                            </span>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="tio-settings"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/details/100035"><i
+                                            class="tio-visible"></i> View</a>
+                                    <a class="dropdown-item" target="_blank"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/generate-invoice/100035"><i
+                                            class="tio-download"></i> Invoice</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="status-canceled class-all">
+                        <td class="">
+                            11
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a href="https://hexacom-admin.6amtech.com/admin/orders/details/100034">100034</a>
+                        </td>
+                        <td>12 Jun 2021</td>
+                        <td>
+                            <a class="text-body text-capitalize"
+                                href="https://hexacom-admin.6amtech.com/admin/customer/view/12">Sabrina
+                                Proma</a>
+                        </td>
+                        <td>
+                            <label class="badge badge-soft-primary">Main Branch</label>
+                        </td>
+                        <td>
+                            <span class="badge badge-soft-danger">
+                                <span class="legend-indicator bg-danger"></span>Unpaid
+                            </span>
+                        </td>
+                        <td>27,720.10$</td>
+                        <td class="text-capitalize">
+                            <span class="badge badge-soft-danger ml-2 ml-sm-3">
+                                <span class="legend-indicator bg-danger"></span>canceled
+                            </span>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="tio-settings"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/details/100034"><i
+                                            class="tio-visible"></i> View</a>
+                                    <a class="dropdown-item" target="_blank"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/generate-invoice/100034"><i
+                                            class="tio-download"></i> Invoice</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="status-pending class-all">
+                        <td class="">
+                            12
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a href="https://hexacom-admin.6amtech.com/admin/orders/details/100033">100033</a>
+                        </td>
+                        <td>12 Jun 2021</td>
+                        <td>
+                            <a class="text-body text-capitalize"
+                                href="https://hexacom-admin.6amtech.com/admin/customer/view/12">Sabrina
+                                Proma</a>
+                        </td>
+                        <td>
+                            <label class="badge badge-soft-primary">Main Branch</label>
+                        </td>
+                        <td>
+                            <span class="badge badge-soft-danger">
+                                <span class="legend-indicator bg-danger"></span>Unpaid
+                            </span>
+                        </td>
+                        <td>160.00$</td>
+                        <td class="text-capitalize">
+                            <span class="badge badge-soft-info ml-2 ml-sm-3">
+                                <span class="legend-indicator bg-info"></span>Pending
+                            </span>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="tio-settings"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/details/100033"><i
+                                            class="tio-visible"></i> View</a>
+                                    <a class="dropdown-item" target="_blank"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/generate-invoice/100033"><i
+                                            class="tio-download"></i> Invoice</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="status-canceled class-all">
+                        <td class="">
+                            13
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a href="https://hexacom-admin.6amtech.com/admin/orders/details/100032">100032</a>
+                        </td>
+                        <td>12 Jun 2021</td>
+                        <td>
+                            <a class="text-body text-capitalize"
+                                href="https://hexacom-admin.6amtech.com/admin/customer/view/12">Sabrina
+                                Proma</a>
+                        </td>
+                        <td>
+                            <label class="badge badge-soft-primary">Main Branch</label>
+                        </td>
+                        <td>
+                            <span class="badge badge-soft-danger">
+                                <span class="legend-indicator bg-danger"></span>Unpaid
+                            </span>
+                        </td>
+                        <td>60.00$</td>
+                        <td class="text-capitalize">
+                            <span class="badge badge-soft-danger ml-2 ml-sm-3">
+                                <span class="legend-indicator bg-danger"></span>canceled
+                            </span>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="tio-settings"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/details/100032"><i
+                                            class="tio-visible"></i> View</a>
+                                    <a class="dropdown-item" target="_blank"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/generate-invoice/100032"><i
+                                            class="tio-download"></i> Invoice</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="status-confirmed class-all">
+                        <td class="">
+                            14
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a href="https://hexacom-admin.6amtech.com/admin/orders/details/100031">100031</a>
+                        </td>
+                        <td>18 Apr 2021</td>
+                        <td>
+                            <a class="text-body text-capitalize"
+                                href="https://hexacom-admin.6amtech.com/admin/customer/view/1">Ashek Elahe</a>
+                        </td>
+                        <td>
+                            <label class="badge badge-soft-primary">Main Branch</label>
+                        </td>
+                        <td>
+                            <span class="badge badge-soft-success">
+                                <span class="legend-indicator bg-success"></span>Paid
+                            </span>
+                        </td>
+                        <td>15,846.00$</td>
+                        <td class="text-capitalize">
+                            <span class="badge badge-soft-info ml-2 ml-sm-3">
+                                <span class="legend-indicator bg-info"></span>Confirmed
+                            </span>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="tio-settings"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/details/100031"><i
+                                            class="tio-visible"></i> View</a>
+                                    <a class="dropdown-item" target="_blank"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/generate-invoice/100031"><i
+                                            class="tio-download"></i> Invoice</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="status-pending class-all">
+                        <td class="">
+                            15
+                        </td>
+                        <td class="table-column-pl-0">
+                            <a href="https://hexacom-admin.6amtech.com/admin/orders/details/100030">100030</a>
+                        </td>
+                        <td>23 Mar 2021</td>
+                        <td>
+                            <a class="text-body text-capitalize"
+                                href="https://hexacom-admin.6amtech.com/admin/customer/view/9">Pedro Pereyra</a>
+                        </td>
+                        <td>
+                            <label class="badge badge-soft-primary">Main Branch</label>
+                        </td>
+                        <td>
+                            <span class="badge badge-soft-danger">
+                                <span class="legend-indicator bg-danger"></span>Unpaid
+                            </span>
+                        </td>
+                        <td>1,766.00$</td>
+                        <td class="text-capitalize">
+                            <span class="badge badge-soft-info ml-2 ml-sm-3">
+                                <span class="legend-indicator bg-info"></span>Pending
+                            </span>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="tio-settings"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/details/100030"><i
+                                            class="tio-visible"></i> View</a>
+                                    <a class="dropdown-item" target="_blank"
+                                        href="https://hexacom-admin.6amtech.com/admin/orders/generate-invoice/100030"><i
+                                            class="tio-download"></i> Invoice</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="card-footer">
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item disabled" aria-disabled="true" aria-label="&laquo; Previous">
+                        <span class="page-link" aria-hidden="true">&lsaquo;</span>
+                    </li>
+                    <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+                    <li class="page-item"><a class="page-link"
+                            href="https://hexacom-admin.6amtech.com/admin/orders/list/all?page=2">2</a></li>
+                    <li class="page-item"><a class="page-link"
+                            href="https://hexacom-admin.6amtech.com/admin/orders/list/all?page=3">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link"
+                            href="https://hexacom-admin.6amtech.com/admin/orders/list/all?page=2" rel="next"
+                            aria-label="Next &raquo;">&rsaquo;</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
