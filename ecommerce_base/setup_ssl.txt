@@ -1,0 +1,39 @@
+							Setup ssl in namecheap
+
+
+Although NameCheap doesn't offer native Let's Encrypt support, it does offer the option to set up LetEncrypt SSL certificates using different utilities like getSSL or ACME.sh.\
+ After using both, I found acme.sh to be much easier to use and more effective, and it also supports auto-renewal.
+
+To access your shared hosting server via SSH, enable it using your cpanel account. (You can obtain keys and log in via your terminal, or for rapid access, utilize an integrated capnel terminal.)
+
+1. install acme.sh utility
+curl https://get.acme.sh | sh
+
+2. Source the Environment variables
+source ~/.bashrc
+
+3. Register your email with Lets's Encrypt to be notified any renewals issue
+acme.sh --register-account --accountemail email@example.com
+
+---->  acme.sh --register-account --accountemail designerapabd@gmail.com
+
+Of course, you wouldn’t want to always have to manually renew your SSL. Therefore, you need to check that acme.sh has enabled a cronjob that does that for you automatically! Run the code below to get that going:
+
+crontab -l | grep acme.sh
+
+4. webroot will be any directory in which your domain exist, give path accordingly.
+acme.sh --issue --webroot ~/public_html -d yourdomain.com --staging
+
+----> acme.sh --issue --webroot ~/holidayzbd.com -d holidayzbd.com --staging
+
+5. issue an actual Certificate
+acme.sh --issue --webroot ~/public_html -d yourdomain.com --force
+
+----> acme.sh --issue --webroot ~/holidayzbd.com  -d holidayzbd.com  --force
+
+
+6.  Install the Certificate to Your cPanel Account(Run the command below to get it deployed to your cpanel account.)
+
+acme.sh —-deploy —-deploy-hook cpanel_uapi —-domain mydomain.com --domain www.mydomain.com
+
+----> acme.sh --deploy --deploy-hook cpanel_uapi --domain holidayzbd.com --domain www.holidayzbd.com

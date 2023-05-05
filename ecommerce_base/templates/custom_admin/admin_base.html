@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="{% static 'custom_admin/css/bootstarp.css' %}"> 
     <script src="{% static 'custom_admin/vendor/hs-navbar-vertical-aside/hs-navbar-vertical-aside-mini-cache.js' %}"></script>
     <!-- <link rel="stylesheet" href="static/css/toastr.css"> -->
+    {% block stylesheet %}
+
+    {% endblock %}
 </head>
 
 <body class="footer-offset"> 
@@ -164,6 +167,9 @@
             });
         });
     </script>
+    {% block script %}
+
+    {% endblock %}
 
 </body>
 

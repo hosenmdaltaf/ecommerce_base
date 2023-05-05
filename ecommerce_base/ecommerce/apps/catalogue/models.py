@@ -42,6 +42,15 @@ class Category(MPTTModel):
     def __str__(self):
         return self.name
     
+    def __str__(self):                           
+        full_path = [self.name]            
+        k = self.parent
+        while k is not None:
+            full_path.append(k.name)
+            k = k.parent
+
+        return ' -> '.join(full_path[::-1])
+    
 
 class Brand(models.Model):
     name = models.CharField(
@@ -68,38 +77,38 @@ class Brand(models.Model):
         return self.name
 
 
-class ProductType(models.Model):
-    """
-    ProductType Table will provide a list of the different types
-    of products that are for sale.
-    """
+# class ProductType(models.Model):
+#     """
+#     ProductType Table will provide a list of the different types
+#     of products that are for sale.
+#     """
 
-    name = models.CharField(verbose_name=_("Product Name"), help_text=_("Required"), max_length=255, unique=True)
-    is_active = models.BooleanField(default=True)
+#     name = models.CharField(verbose_name=_("Product Name"), help_text=_("Required"), max_length=255, unique=True)
+#     is_active = models.BooleanField(default=True)
 
-    class Meta:
-        verbose_name = _("Product Type")
-        verbose_name_plural = _("Product Types")
+#     class Meta:
+#         verbose_name = _("Product Type")
+#         verbose_name_plural = _("Product Types")
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
 
-class ProductSpecification(models.Model):
-    """
-    The Product Specification Table contains product
-    specifiction or features for the product types.
-    """
+# class ProductSpecification(models.Model):
+#     """
+#     The Product Specification Table contains product
+#     specifiction or features for the product types.
+#     """
 
-    product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT)
-    name = models.CharField(verbose_name=_("Name"), help_text=_("Required"), max_length=255)
+#     product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT)
+#     name = models.CharField(verbose_name=_("Name"), help_text=_("Required"), max_length=255)
 
-    class Meta:
-        verbose_name = _("Product Specification")
-        verbose_name_plural = _("Product Specifications")
+#     class Meta:
+#         verbose_name = _("Product Specification")
+#         verbose_name_plural = _("Product Specifications")
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
 
 class Product(models.Model):
@@ -113,13 +122,23 @@ class Product(models.Model):
         ("Ltr", "Liter"),
     ]
 
-    product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT)
-    category = models.ForeignKey(Category, on_delete=models.RESTRICT)
+    # product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT)
     title = models.CharField(
         verbose_name=_("title"),
         help_text=_("Required"),
         max_length=255,
     )
+    category = models.ForeignKey(Category, on_delete=models.RESTRICT)
+    brand = models.ForeignKey(Brand, on_delete=models.RESTRICT,null=True,blank=True)
+    unit = models.IntegerField(
+        default=1,
+    )
+    unit_choices = models.CharField(
+        max_length=8,
+        choices=UNIT_CHOICES,
+        default= 'Pc'
+    )
+
     description = models.TextField(verbose_name=_("description"), help_text=_("Not Required"), blank=True)
     slug = models.SlugField(max_length=255)
     stock = models.IntegerField(
@@ -146,12 +165,14 @@ class Product(models.Model):
         },
         max_digits=5,
         decimal_places=2,
+        null=True,
+        blank=True
     )
 
     is_active = models.BooleanField(
         verbose_name=_("Product visibility"),
         help_text=_("Change product visibility"),
-        default=True,
+        default=False,
     )
     created_at = models.DateTimeField(_("Created at"), auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(_("Updated at"), auto_now=True)
@@ -169,26 +190,26 @@ class Product(models.Model):
         return self.title
 
 
-class ProductSpecificationValue(models.Model):
-    """
-    The Product Specification Value table holds each of the
-    products individual specification or bespoke features.
-    """
+# class ProductSpecificationValue(models.Model):
+#     """
+#     The Product Specification Value table holds each of the
+#     products individual specification or bespoke features.
+#     """
 
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    specification = models.ForeignKey(ProductSpecification, on_delete=models.RESTRICT)
-    value = models.CharField(
-        verbose_name=_("value"),
-        help_text=_("Product specification value (maximum of 255 words"),
-        max_length=255,
-    )
+#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+#     specification = models.ForeignKey(ProductSpecification, on_delete=models.RESTRICT)
+#     value = models.CharField(
+#         verbose_name=_("value"),
+#         help_text=_("Product specification value (maximum of 255 words"),
+#         max_length=255,
+#     )
 
-    class Meta:
-        verbose_name = _("Product Specification Value")
-        verbose_name_plural = _("Product Specification Values")
+#     class Meta:
+#         verbose_name = _("Product Specification Value")
+#         verbose_name_plural = _("Product Specification Values")
 
-    def __str__(self):
-        return self.value
+#     def __str__(self):
+#         return self.value
 
 
 class ProductImage(models.Model):

@@ -18,14 +18,14 @@
         <div class="col-sm-12 col-lg-12 mb-3 mb-lg-2">
             <form action="javascript:" method="post" id="product_form" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="exQL7efvbLmI1kyI8x8s46H4ba1H8Bs2DPAg1i73">
-                <ul class="nav nav-tabs mb-4">
+                {% comment %} <ul class="nav nav-tabs mb-4">
                     <li class="nav-item">
                         <a class="nav-link lang_link active" href="#" id="en-link">English(EN)</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link lang_link " href="#" id="ar-link">Arabic - العربية(AR)</a>
                     </li>
-                </ul>
+                </ul> {% endcomment %}
                 <div class="card p-4  lang_form" id="en-form">
                     <div class="form-group">
                         <label class="input-label" for="en_name">Name (EN)</label>
@@ -35,10 +35,11 @@
                     <input type="hidden" name="lang[]" value="en">
                     <div class="form-group pt-4">
                         <label class="input-label" for="en_description">Short Description (EN)</label>
-                        <div id="en_editor" style="min-height: 15rem;"></div>
-                        <textarea name="description[]" style="display:none" id="en_hiddenArea"></textarea>
+                        <div id="myContent" id="en_editor" style="min-height: 15rem;"></div>
+                        <textarea  name="description[]" style="display:none" id="en_hiddenArea"></textarea>
                     </div>
                 </div>
+              
                 <div class="card p-4 d-none lang_form" id="ar-form">
                     <div class="form-group">
                         <label class="input-label" for="ar_name">Name (AR)</label>
@@ -72,7 +73,8 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-6">
+
+                        {% comment %} <div class="col-6">
                             <div class="form-group">
                                 <label class="input-label" for="exampleFormControlInput1">Tax</label>
                                 <input type="number" min="0" value="0" step="0.01" max="100000" name="tax"
@@ -87,7 +89,8 @@
                                     <option value="amount">Amount</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> {% endcomment %}
+
                     </div>
                     <div class="row">
                         <div class="col-md-4 col-4">
@@ -119,35 +122,30 @@
                             <div class="form-group">
                                 <label class="input-label" for="exampleFormControlSelect1">Category<span
                                         class="input-label-secondary">*</span></label>
-                                <select name="category_id" class="form-control js-select2-custom"
-                                    onchange="getRequest('https://hexacom-admin.6amtech.com/admin/product/get-categories?parent_id='+this.value,'sub-categories')">
+                                <select name="category_id" class="form-control js-select2-custom">
                                     <option value="">---Select---</option>
-                                    <option value="1">Men&#039;s fashion</option>
-                                    <option value="2">Footwear</option>
-                                    <option value="3">accessories</option>
-                                    <option value="4">Electronics</option>
-                                    <option value="5">Mobile phones</option>
-                                    <option value="17">Women Fashion</option>
-                                    <option value="20">Watches &amp; Accessories</option>
-                                    <option value="27">TV &amp; Home Appliances</option>
-                                    <option value="29">Doll</option>
-                                    <option value="31">Medical supplies</option>
-                                    <option value="33">Boys</option>
+                                    {% for cat in categories %}
+                                    <option value="{{cat.name}}">{{cat.name}}</option>
+                                    {% endfor %}
+                        
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6 col-6">
                             <div class="form-group">
-                                <label class="input-label" for="exampleFormControlSelect1">Sub category<span
+                                <label class="input-label" for="exampleFormControlSelect1">Brand<span
                                         class="input-label-secondary"></span></label>
-                                <select name="sub_category_id" id="sub-categories"
-                                    class="form-control js-select2-custom"
-                                    onchange="getRequest('https://hexacom-admin.6amtech.com/admin/product/get-categories?parent_id='+this.value,'sub-sub-categories')">
-                                </select>
+                                        <select name="category_id" class="form-control js-select2-custom">
+                                            <option value="">---Select---</option>
+                                            {% for brand in brands %}
+                                            <option value="{{brand.name}}">{{brand.name}}</option>
+                                            {% endfor %}
+                                        </select>
                             </div>
                         </div>
                     </div>
-                    <div class="row"
+
+                    {% comment %} <div class="row"
                         style="border: 1px solid #80808045; border-radius: 10px;padding-top: 10px;margin: 1px">
                         <div class="col-12">
                             <div class="form-group">
@@ -171,7 +169,8 @@
                             <div class="variant_combination" id="variant_combination">
                             </div>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
+
                     <div class="form-group">
                         <label>Product Image</label><small style="color: red">* ( Ratio 1:1 )</small>
                         <div>
@@ -187,3 +186,5 @@
 </div>
 
 {% endblock %}
+
+
