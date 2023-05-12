@@ -516,7 +516,7 @@ style="width: 35rem;">
                             <i class="tio-premium-outlined nav-icon"></i>
                             <span
                                 class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Product</span>
-                        </a>
+                        </a> 
                         <ul class="js-navbar-vertical-aside-submenu nav nav-sub" style="display: none">
                             <li class="nav-item ">
                                 <a class="nav-link "
@@ -526,6 +526,16 @@ style="width: 35rem;">
                                     <span class="text-truncate">Add New</span>
                                 </a>
                             </li>
+
+                            <li class="nav-item ">
+                                <a class="nav-link "
+                                    href="{% url 'custom_admin:product_add' %}"
+                                    title="Add new product">
+                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <span class="text-truncate">Ad</span>
+                                </a>
+                            </li>
+
                             <li class="nav-item ">
                                 <a class="nav-link " href="{% url 'custom_admin:product_list' %}"
                                     title="Product list">

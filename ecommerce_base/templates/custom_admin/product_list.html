@@ -1,671 +1,206 @@
 {% extends 'custom_admin/admin_base.html' %}
-{% load static %}
-{% block content %}
+ {% load static %} 
+ {% block content %}
 
 <div class="content container-fluid">
-
-    <div class="page-header">
+  <div class="page-header">
     <div class="row align-items-center">
-    <div class="col-sm mb-2 mb-sm-0">
-    <h1 class="page-header-title"><i class="tio-filter-list"></i> Product List
-    <span class="badge badge-soft-dark ml-2">27</span></h1>
+      <div class="col-sm mb-2 mb-sm-0">
+        <h1 class="page-header-title">
+          <i class="tio-filter-list"></i> Product List
+          <span class="badge badge-soft-dark ml-2">27</span>
+        </h1>
+      </div>
     </div>
-    </div>
-    </div>
-    
-    <div class="row gx-2 gx-lg-3">
+  </div>
+
+  <div class="row gx-2 gx-lg-3">
     <div class="col-sm-12 col-lg-12 mb-3 mb-lg-2">
-    
-    <div class="card">
-    
-    <div class="card-header">
-    <div class="row justify-content-between align-items-center flex-grow-1">
-    <div class="ml-3">
-    <form action="https://hexacom-admin.6amtech.com/admin/product/list" method="GET">
-    <div class="input-group">
-    <input id="datatableSearch_" type="search" name="search" class="form-control" placeholder="Search" aria-label="Search" value="" required autocomplete="off">
-    <div class="input-group-append">
-    <button type="submit" class="input-group-text"><i class="tio-search"></i>
-    </button>
-    </div>
-    </div>
-    </form>
-    </div>
-    <div class="col-md-6">
-    <a href="https://hexacom-admin.6amtech.com/admin/product/add-new" class="btn btn-primary float-right"><i class="tio-add-circle"></i> Add New Product
-    </a>
-    </div>
-    </div>
-    </div>
-    
-    
-    <div class="table-responsive datatable-custom">
-    <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-    <thead class="thead-light">
-    <tr>
-    <th>#</th>
-    <th style="width: 30%">Name</th>
-    <th style="width: 25%">Image</th>
-    <th>Status</th>
-    <th>Price</th>
-    <th>Stock</th>
-    <th>Action</th>
-    </tr>
-    </thead>
-    <tbody id="set-rows">
-    <tr>
-    <td>1</td>
-    <td>
-    <span class="d-block font-size-sm text-body">
-    <a href="https://hexacom-admin.6amtech.com/admin/product/view/28">
-    Kurti
-    </a>
-    </span>
-    </td>
-    <td>
-    <div style="height: 100px; width: 100px; overflow-x: hidden;overflow-y: hidden">
-    <img src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-10-13-6166f8d45183d.png" style="width: 100px" onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'">
-    </div>
-    </td>
-    <td>
-    <div style="padding: 10px;border: 1px solid;cursor: pointer" onclick="location.href='https://hexacom-admin.6amtech.com/admin/product/status/28/0'">
-    <span class="legend-indicator bg-success"></span>Active
-    </div>
-    </td>
-    <td>699.98$</td>
-    <td>
-    <label class="badge badge-soft-info">10</label>
-    </td>
-    <td>
-    
-    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="tio-settings"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="https://hexacom-admin.6amtech.com/admin/product/edit/28">Edit</a>
-    <a class="dropdown-item" href="javascript:" onclick="form_alert('product-28','Want to delete this item  ')">Delete</a>
-    <form action="https://hexacom-admin.6amtech.com/admin/product/delete/28" method="post" id="product-28">
-    <input type="hidden" name="_token" value="drfN3CLFzbTlMOYHtQrnNNlFlkaWjiOzhL3qiNWm"> <input type="hidden" name="_method" value="delete"> </form>
-    </div>
-    </div>
-    
-    </td>
-    </tr>
-    <tr>
-    <td>2</td>
-    <td>
-    <span class="d-block font-size-sm text-body">
-    <a href="https://hexacom-admin.6amtech.com/admin/product/view/27">
-    Checked Shirt
-    </a>
-    </span>
-    </td>
-    <td>
-    <div style="height: 100px; width: 100px; overflow-x: hidden;overflow-y: hidden">
-    <img src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-03-22-6058f2a46423a.png" style="width: 100px" onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'">
-    </div>
-    </td>
-    <td>
-    <div style="padding: 10px;border: 1px solid;cursor: pointer" onclick="location.href='https://hexacom-admin.6amtech.com/admin/product/status/27/1'">
-    <span class="legend-indicator bg-danger"></span>Disabled
-    </div>
-    </td>
-    <td>300.00$</td>
-    <td>
-    <label class="badge badge-soft-info">96</label>
-    </td>
-    <td>
-    
-    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="tio-settings"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="https://hexacom-admin.6amtech.com/admin/product/edit/27">Edit</a>
-    <a class="dropdown-item" href="javascript:" onclick="form_alert('product-27','Want to delete this item  ')">Delete</a>
-    <form action="https://hexacom-admin.6amtech.com/admin/product/delete/27" method="post" id="product-27">
-    <input type="hidden" name="_token" value="drfN3CLFzbTlMOYHtQrnNNlFlkaWjiOzhL3qiNWm"> <input type="hidden" name="_method" value="delete"> </form>
-    </div>
-    </div>
-    
-    </td>
-    </tr>
-    <tr>
-    <td>3</td>
-    <td>
-    <span class="d-block font-size-sm text-body">
-    <a href="https://hexacom-admin.6amtech.com/admin/product/view/26">
-    women leggings
-    </a>
-    </span>
-    </td>
-    <td>
-    <div style="height: 100px; width: 100px; overflow-x: hidden;overflow-y: hidden">
-    <img src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-03-21-60572f3c3030e.png" style="width: 100px" onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'">
-    </div>
-    </td>
-    <td>
-    <div style="padding: 10px;border: 1px solid;cursor: pointer" onclick="location.href='https://hexacom-admin.6amtech.com/admin/product/status/26/1'">
-    <span class="legend-indicator bg-danger"></span>Disabled
-    </div>
-    </td>
-    <td>1,230.00$</td>
-    <td>
-    <label class="badge badge-soft-info">100</label>
-    </td>
-    <td>
-     
-    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="tio-settings"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="https://hexacom-admin.6amtech.com/admin/product/edit/26">Edit</a>
-    <a class="dropdown-item" href="javascript:" onclick="form_alert('product-26','Want to delete this item  ')">Delete</a>
-    <form action="https://hexacom-admin.6amtech.com/admin/product/delete/26" method="post" id="product-26">
-    <input type="hidden" name="_token" value="drfN3CLFzbTlMOYHtQrnNNlFlkaWjiOzhL3qiNWm"> <input type="hidden" name="_method" value="delete"> </form>
-    </div>
-    </div>
-    
-    </td>
-    </tr>
-    <tr>
-    <td>4</td>
-    <td>
-    <span class="d-block font-size-sm text-body">
-    <a href="https://hexacom-admin.6amtech.com/admin/product/view/25">
-    Barbie doll
-    </a>
-    </span>
-    </td>
-    <td>
-    <div style="height: 100px; width: 100px; overflow-x: hidden;overflow-y: hidden">
-    <img src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-03-21-60572669e889d.png" style="width: 100px" onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'">
-    </div>
-    </td>
-    <td>
-    <div style="padding: 10px;border: 1px solid;cursor: pointer" onclick="location.href='https://hexacom-admin.6amtech.com/admin/product/status/25/0'">
-    <span class="legend-indicator bg-success"></span>Active
-    </div>
-    </td>
-    <td>2,300.00$</td>
-    <td>
-    <label class="badge badge-soft-info">95</label>
-    </td>
-    <td>
-    
-    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="tio-settings"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="https://hexacom-admin.6amtech.com/admin/product/edit/25">Edit</a>
-    <a class="dropdown-item" href="javascript:" onclick="form_alert('product-25','Want to delete this item  ')">Delete</a>
-    <form action="https://hexacom-admin.6amtech.com/admin/product/delete/25" method="post" id="product-25">
-    <input type="hidden" name="_token" value="drfN3CLFzbTlMOYHtQrnNNlFlkaWjiOzhL3qiNWm"> <input type="hidden" name="_method" value="delete"> </form>
-    </div>
-    </div>
-    
-    </td>
-    </tr>
-    <tr>
-    <td>5</td>
-    <td>
-    <span class="d-block font-size-sm text-body">
-    <a href="https://hexacom-admin.6amtech.com/admin/product/view/23">
-    Samsung T35 22 Inch ...
-    </a>
-    </span>
-    </td>
-    <td>
-    <div style="height: 100px; width: 100px; overflow-x: hidden;overflow-y: hidden">
-    <img src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-03-11-604a1b379c33c.png" style="width: 100px" onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'">
-    </div>
-    </td>
-    <td>
-    <div style="padding: 10px;border: 1px solid;cursor: pointer" onclick="location.href='https://hexacom-admin.6amtech.com/admin/product/status/23/0'">
-    <span class="legend-indicator bg-success"></span>Active
-    </div>
-    </td>
-    <td>13,500.00$</td>
-    <td>
-    <label class="badge badge-soft-info">96</label>
-    </td>
-    <td>
-    
-    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="tio-settings"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="https://hexacom-admin.6amtech.com/admin/product/edit/23">Edit</a>
-    <a class="dropdown-item" href="javascript:" onclick="form_alert('product-23','Want to delete this item  ')">Delete</a>
-    <form action="https://hexacom-admin.6amtech.com/admin/product/delete/23" method="post" id="product-23">
-    <input type="hidden" name="_token" value="drfN3CLFzbTlMOYHtQrnNNlFlkaWjiOzhL3qiNWm"> <input type="hidden" name="_method" value="delete"> </form>
-    </div>
-    </div>
-    
-    </td>
-    </tr>
-    <tr>
-    <td>6</td>
-    <td>
-    <span class="d-block font-size-sm text-body">
-    <a href="https://hexacom-admin.6amtech.com/admin/product/view/22">
-    YUFENG 3388 tripod d...
-    </a>
-    </span>
-    </td>
-    <td>
-    <div style="height: 100px; width: 100px; overflow-x: hidden;overflow-y: hidden">
-    <img src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-03-11-604a1a5964714.png" style="width: 100px" onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'">
-    </div>
-    </td>
-    <td>
-    <div style="padding: 10px;border: 1px solid;cursor: pointer" onclick="location.href='https://hexacom-admin.6amtech.com/admin/product/status/22/0'">
-    <span class="legend-indicator bg-success"></span>Active
-    </div>
-    </td>
-    <td>890.00$</td>
-    <td>
-    <label class="badge badge-soft-info">100</label>
-    </td>
-    <td>
-    
-    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="tio-settings"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="https://hexacom-admin.6amtech.com/admin/product/edit/22">Edit</a>
-    <a class="dropdown-item" href="javascript:" onclick="form_alert('product-22','Want to delete this item  ')">Delete</a>
-    <form action="https://hexacom-admin.6amtech.com/admin/product/delete/22" method="post" id="product-22">
-    <input type="hidden" name="_token" value="drfN3CLFzbTlMOYHtQrnNNlFlkaWjiOzhL3qiNWm"> <input type="hidden" name="_method" value="delete"> </form>
-    </div>
-    </div>
-    
-    </td>
-    </tr>
-    <tr>
-    <td>7</td>
-    <td>
-    <span class="d-block font-size-sm text-body">
-    <a href="https://hexacom-admin.6amtech.com/admin/product/view/21">
-    i7s TWS Mini Wireles...
-    </a>
-    </span>
-    </td>
-    <td>
-    <div style="height: 100px; width: 100px; overflow-x: hidden;overflow-y: hidden">
-    <img src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-03-11-604a197ece275.png" style="width: 100px" onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'">
-    </div>
-    </td>
-    <td>
-    <div style="padding: 10px;border: 1px solid;cursor: pointer" onclick="location.href='https://hexacom-admin.6amtech.com/admin/product/status/21/0'">
-    <span class="legend-indicator bg-success"></span>Active
-    </div>
-    </td>
-    <td>1,290.00$</td>
-    <td>
-    <label class="badge badge-soft-info">95</label>
-    </td>
-    <td>
-    
-    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="tio-settings"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="https://hexacom-admin.6amtech.com/admin/product/edit/21">Edit</a>
-    <a class="dropdown-item" href="javascript:" onclick="form_alert('product-21','Want to delete this item  ')">Delete</a>
-    <form action="https://hexacom-admin.6amtech.com/admin/product/delete/21" method="post" id="product-21">
-    <input type="hidden" name="_token" value="drfN3CLFzbTlMOYHtQrnNNlFlkaWjiOzhL3qiNWm"> <input type="hidden" name="_method" value="delete"> </form>
-    </div>
-    </div>
-    
-    </td>
-    </tr>
-    <tr>
-    <td>8</td>
-    <td>
-    <span class="d-block font-size-sm text-body">
-    <a href="https://hexacom-admin.6amtech.com/admin/product/view/20">
-    Panasonic Automatic ...
-    </a>
-    </span>
-    </td>
-    <td>
-    <div style="height: 100px; width: 100px; overflow-x: hidden;overflow-y: hidden">
-    <img src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-03-11-604a190a851c8.png" style="width: 100px" onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'">
-    </div>
-    </td>
-    <td>
-    <div style="padding: 10px;border: 1px solid;cursor: pointer" onclick="location.href='https://hexacom-admin.6amtech.com/admin/product/status/20/0'">
-    <span class="legend-indicator bg-success"></span>Active
-    </div>
-    </td>
-    <td>1,250.00$</td>
-    <td>
-    <label class="badge badge-soft-info">97</label>
-    </td>
-    <td>
-    
-    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="tio-settings"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="https://hexacom-admin.6amtech.com/admin/product/edit/20">Edit</a>
-    <a class="dropdown-item" href="javascript:" onclick="form_alert('product-20','Want to delete this item  ')">Delete</a>
-    <form action="https://hexacom-admin.6amtech.com/admin/product/delete/20" method="post" id="product-20">
-    <input type="hidden" name="_token" value="drfN3CLFzbTlMOYHtQrnNNlFlkaWjiOzhL3qiNWm"> <input type="hidden" name="_method" value="delete"> </form>
-    </div>
-    </div>
-    
-    </td>
-    </tr>
-    <tr>
-    <td>9</td>
-    <td>
-    <span class="d-block font-size-sm text-body">
-    <a href="https://hexacom-admin.6amtech.com/admin/product/view/19">
-    Casual Lightweight L...
-    </a>
-    </span>
-    </td>
-    <td>
-    <div style="height: 100px; width: 100px; overflow-x: hidden;overflow-y: hidden">
-    <img src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-03-11-604a185012451.png" style="width: 100px" onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'">
-    </div>
-    </td>
-    <td>
-    <div style="padding: 10px;border: 1px solid;cursor: pointer" onclick="location.href='https://hexacom-admin.6amtech.com/admin/product/status/19/0'">
-    <span class="legend-indicator bg-success"></span>Active
-    </div>
-    </td>
-    <td>2,650.00$</td>
-    <td>
-    <label class="badge badge-soft-info">97</label>
-    </td>
-    <td>
-    
-    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="tio-settings"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="https://hexacom-admin.6amtech.com/admin/product/edit/19">Edit</a>
-    <a class="dropdown-item" href="javascript:" onclick="form_alert('product-19','Want to delete this item  ')">Delete</a>
-    <form action="https://hexacom-admin.6amtech.com/admin/product/delete/19" method="post" id="product-19">
-    <input type="hidden" name="_token" value="drfN3CLFzbTlMOYHtQrnNNlFlkaWjiOzhL3qiNWm"> <input type="hidden" name="_method" value="delete"> </form>
-    </div>
-    </div>
-    
-    </td>
-    </tr>
-    <tr>
-    <td>10</td>
-    <td>
-    <span class="d-block font-size-sm text-body">
-    <a href="https://hexacom-admin.6amtech.com/admin/product/view/18">
-    NAVIFORCE NF5001 Blu...
-    </a>
-    </span>
-    </td>
-    <td>
-    <div style="height: 100px; width: 100px; overflow-x: hidden;overflow-y: hidden">
-    <img src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-03-11-604a11d8d7801.png" style="width: 100px" onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'">
-    </div>
-    </td>
-    <td>
-    <div style="padding: 10px;border: 1px solid;cursor: pointer" onclick="location.href='https://hexacom-admin.6amtech.com/admin/product/status/18/0'">
-    <span class="legend-indicator bg-success"></span>Active
-    </div>
-    </td>
-    <td>890.00$</td>
-    <td>
-    <label class="badge badge-soft-info">100</label>
-    </td>
-    <td>
-    
-    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="tio-settings"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="https://hexacom-admin.6amtech.com/admin/product/edit/18">Edit</a>
-    <a class="dropdown-item" href="javascript:" onclick="form_alert('product-18','Want to delete this item  ')">Delete</a>
-    <form action="https://hexacom-admin.6amtech.com/admin/product/delete/18" method="post" id="product-18">
-    <input type="hidden" name="_token" value="drfN3CLFzbTlMOYHtQrnNNlFlkaWjiOzhL3qiNWm"> <input type="hidden" name="_method" value="delete"> </form>
-    </div>
-    </div>
-     
-    </td>
-    </tr>
-    <tr>
-    <td>11</td>
-    <td>
-    <span class="d-block font-size-sm text-body">
-    <a href="https://hexacom-admin.6amtech.com/admin/product/view/17">
-    uisi earphones
-    </a>
-    </span>
-    </td>
-    <td>
-    <div style="height: 100px; width: 100px; overflow-x: hidden;overflow-y: hidden">
-    <img src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-03-11-604a119b325e0.png" style="width: 100px" onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'">
-    </div>
-    </td>
-    <td>
-    <div style="padding: 10px;border: 1px solid;cursor: pointer" onclick="location.href='https://hexacom-admin.6amtech.com/admin/product/status/17/0'">
-    <span class="legend-indicator bg-success"></span>Active
-    </div>
-    </td>
-    <td>122.00$</td>
-    <td>
-    <label class="badge badge-soft-info">99</label>
-    </td>
-    <td>
-    
-    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="tio-settings"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="https://hexacom-admin.6amtech.com/admin/product/edit/17">Edit</a>
-    <a class="dropdown-item" href="javascript:" onclick="form_alert('product-17','Want to delete this item  ')">Delete</a>
-    <form action="https://hexacom-admin.6amtech.com/admin/product/delete/17" method="post" id="product-17">
-    <input type="hidden" name="_token" value="drfN3CLFzbTlMOYHtQrnNNlFlkaWjiOzhL3qiNWm"> <input type="hidden" name="_method" value="delete"> </form>
-    </div>
-    </div>
-    
-    </td>
-    </tr>
-    <tr>
-    <td>12</td>
-    <td>
-    <span class="d-block font-size-sm text-body">
-    <a href="https://hexacom-admin.6amtech.com/admin/product/view/16">
-    Luxury Fashion Brand...
-    </a>
-    </span>
-    </td>
-    <td>
-    <div style="height: 100px; width: 100px; overflow-x: hidden;overflow-y: hidden">
-    <img src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-03-11-604a1173582d6.png" style="width: 100px" onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'">
-    </div>
-    </td>
-    <td>
-    <div style="padding: 10px;border: 1px solid;cursor: pointer" onclick="location.href='https://hexacom-admin.6amtech.com/admin/product/status/16/0'">
-    <span class="legend-indicator bg-success"></span>Active
-    </div>
-    </td>
-    <td>590.00$</td>
-    <td>
-    <label class="badge badge-soft-info">99</label>
-    </td>
-    <td>
-    
-    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="tio-settings"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="https://hexacom-admin.6amtech.com/admin/product/edit/16">Edit</a>
-    <a class="dropdown-item" href="javascript:" onclick="form_alert('product-16','Want to delete this item  ')">Delete</a>
-    <form action="https://hexacom-admin.6amtech.com/admin/product/delete/16" method="post" id="product-16">
-    <input type="hidden" name="_token" value="drfN3CLFzbTlMOYHtQrnNNlFlkaWjiOzhL3qiNWm"> <input type="hidden" name="_method" value="delete"> </form>
-    </div>
-    </div>
-    
-    </td>
-    </tr>
-    <tr>
-    <td>13</td>
-    <td>
-    <span class="d-block font-size-sm text-body">
-    <a href="https://hexacom-admin.6amtech.com/admin/product/view/15">
-    65 Class Q60R QLED S...
-    </a>
-    </span>
-    </td>
-    <td>
-    <div style="height: 100px; width: 100px; overflow-x: hidden;overflow-y: hidden">
-    <img src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-03-11-604a0993451f2.png" style="width: 100px" onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'">
-    </div>
-    </td>
-    <td>
-    <div style="padding: 10px;border: 1px solid;cursor: pointer" onclick="location.href='https://hexacom-admin.6amtech.com/admin/product/status/15/0'">
-    <span class="legend-indicator bg-success"></span>Active
-    </div>
-    </td>
-    <td>89,000.00$</td>
-    <td>
-    <label class="badge badge-soft-info">100</label>
-    </td>
-    <td>
-    
-    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="tio-settings"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="https://hexacom-admin.6amtech.com/admin/product/edit/15">Edit</a>
-    <a class="dropdown-item" href="javascript:" onclick="form_alert('product-15','Want to delete this item  ')">Delete</a>
-    <form action="https://hexacom-admin.6amtech.com/admin/product/delete/15" method="post" id="product-15">
-    <input type="hidden" name="_token" value="drfN3CLFzbTlMOYHtQrnNNlFlkaWjiOzhL3qiNWm"> <input type="hidden" name="_method" value="delete"> </form>
-    </div>
-    </div>
-    
-    </td>
-    </tr>
-    <tr>
-    <td>14</td>
-    <td>
-    <span class="d-block font-size-sm text-body">
-    <a href="https://hexacom-admin.6amtech.com/admin/product/view/14">
-    Stainless Steel mens...
-    </a>
-    </span>
-    </td>
-     <td>
-    <div style="height: 100px; width: 100px; overflow-x: hidden;overflow-y: hidden">
-    <img src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-03-11-604a07360dcf0.png" style="width: 100px" onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'">
-    </div>
-    </td>
-    <td>
-    <div style="padding: 10px;border: 1px solid;cursor: pointer" onclick="location.href='https://hexacom-admin.6amtech.com/admin/product/status/14/0'">
-    <span class="legend-indicator bg-success"></span>Active
-    </div>
-    </td>
-    <td>1,299.00$</td>
-    <td>
-    <label class="badge badge-soft-info">100</label>
-    </td>
-    <td>
-    
-    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="tio-settings"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="https://hexacom-admin.6amtech.com/admin/product/edit/14">Edit</a>
-    <a class="dropdown-item" href="javascript:" onclick="form_alert('product-14','Want to delete this item  ')">Delete</a>
-    <form action="https://hexacom-admin.6amtech.com/admin/product/delete/14" method="post" id="product-14">
-    <input type="hidden" name="_token" value="drfN3CLFzbTlMOYHtQrnNNlFlkaWjiOzhL3qiNWm"> <input type="hidden" name="_method" value="delete"> </form>
-    </div>
-    </div>
-    
-    </td>
-    </tr>
-    <tr>
-    <td>15</td>
-    <td>
-    <span class="d-block font-size-sm text-body">
-    <a href="https://hexacom-admin.6amtech.com/admin/product/view/13">
-    Black Analog Watch F...
-    </a>
-    </span>
-    </td>
-    <td>
-    <div style="height: 100px; width: 100px; overflow-x: hidden;overflow-y: hidden">
-    <img src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-03-11-604a05bf9d5f5.png" style="width: 100px" onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'">
-    </div>
-    </td>
-    <td>
-    <div style="padding: 10px;border: 1px solid;cursor: pointer" onclick="location.href='https://hexacom-admin.6amtech.com/admin/product/status/13/0'">
-    <span class="legend-indicator bg-success"></span>Active
-    </div>
-    </td>
-    <td>290.00$</td>
-    <td>
-    <label class="badge badge-soft-info">100</label>
-    </td>
-    <td>
-    
-    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="tio-settings"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="https://hexacom-admin.6amtech.com/admin/product/edit/13">Edit</a>
-    <a class="dropdown-item" href="javascript:" onclick="form_alert('product-13','Want to delete this item  ')">Delete</a>
-    <form action="https://hexacom-admin.6amtech.com/admin/product/delete/13" method="post" id="product-13">
-    <input type="hidden" name="_token" value="drfN3CLFzbTlMOYHtQrnNNlFlkaWjiOzhL3qiNWm"> <input type="hidden" name="_method" value="delete"> </form>
-    </div>
-    </div>
-    
-    </td>
-    </tr>
-    </tbody>
-    </table>
-    <hr>
-    <div class="page-area">
-    <table>
-    <tfoot class="border-top">
-    <nav>
-    <ul class="pagination">
-    <li class="page-item disabled" aria-disabled="true" aria-label="&laquo; Previous">
-    <span class="page-link" aria-hidden="true">&lsaquo;</span>
-    </li>
-    <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
-    <li class="page-item"><a class="page-link" href="https://hexacom-admin.6amtech.com/admin/product/list?page=2">2</a></li>
-    <li class="page-item">
-    <a class="page-link" href="https://hexacom-admin.6amtech.com/admin/product/list?page=2" rel="next" aria-label="Next &raquo;">&rsaquo;</a>
-    </li>
-    </ul>
-    </nav>
-    </tfoot>
-    </table>
-    </div>
-    </div>
-    
-    </div>
-    
-    </div>
-    </div>
-    </div>
-    
+      <div class="card">
+        <div class="card-header">
+          <div
+            class="row justify-content-between align-items-center flex-grow-1"
+          >
+            <div class="ml-3">
+              <form
+                action="https://hexacom-admin.6amtech.com/admin/product/list"
+                method="GET"
+              >
+                <div class="input-group">
+                  <input
+                    id="datatableSearch_"
+                    type="search"
+                    name="search"
+                    class="form-control"
+                    placeholder="Search"
+                    aria-label="Search"
+                    value=""
+                    required
+                    autocomplete="off"
+                  />
+                  <div class="input-group-append">
+                    <button type="submit" class="input-group-text">
+                      <i class="tio-search"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-6">
+              <a
+                href="https://hexacom-admin.6amtech.com/admin/product/add-new"
+                class="btn btn-primary float-right"
+                ><i class="tio-add-circle"></i> Add New Product
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive datatable-custom">
+          <table
+            class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
+          >
+            <thead class="thead-light">
+              <tr>
+                <th>#</th>
+                <th style="width: 30%">Name</th>
+                <th style="width: 25%">Image</th>
+                <th>Status</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="set-rows">
+
+            {% for product in products %}
+              <tr>
+                <td>1</td>
+                <td>
+                  <span class="d-block font-size-sm text-body">
+                    <a
+                      href="https://hexacom-admin.6amtech.com/admin/product/view/28"
+                    >
+                      {{product.title}}
+                    </a>
+                  </span>
+                </td>
+                <td>
+                  <div
+                    style="
+                      height: 100px;
+                      width: 100px;
+                      overflow-x: hidden;
+                      overflow-y: hidden;
+                    "
+                  >
+                    <img
+                      src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-10-13-6166f8d45183d.png"
+                      style="width: 100px"
+                      onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <div
+                    style="padding: 10px; border: 1px solid; cursor: pointer"
+                    onclick="location.href='https://hexacom-admin.6amtech.com/admin/product/status/28/0'"
+                  >
+                    <span class="legend-indicator bg-success"></span>Active
+                  </div>
+                </td>
+                <td>{{product.regular_price}}$</td>
+                <td>
+                  <label class="badge badge-soft-info">{{product.stock}}</label>
+                </td>
+                <td>
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="tio-settings"></i>
+                    </button>
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+                      <a
+                        class="dropdown-item"
+                        href="{% url 'custom_admin:update_product' product.pk %}"
+                        >Edit</a
+                      >
+                      <a
+                        class="dropdown-item"
+                        href="javascript:"
+                        onclick="form_alert('product-28','Want to delete this item  ')"
+                        >Delete</a
+                      >
+                      <form
+                        action="https://hexacom-admin.6amtech.com/admin/product/delete/28"
+                        method="post"
+                        id="product-28"
+                      >
+                        <input
+                          type="hidden"
+                          name="_token"
+                          value="drfN3CLFzbTlMOYHtQrnNNlFlkaWjiOzhL3qiNWm"
+                        />
+                        <input type="hidden" name="_method" value="delete" />
+                      </form>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+              
+            </tbody>
+          </table>
+          <hr />
+          <div class="page-area">
+            <table>
+              <tfoot class="border-top">
+                <nav>
+                  <ul class="pagination">
+                    <li
+                      class="page-item disabled"
+                      aria-disabled="true"
+                      aria-label="&laquo; Previous"
+                    >
+                      <span class="page-link" aria-hidden="true">&lsaquo;</span>
+                    </li>
+                    <li class="page-item active" aria-current="page">
+                      <span class="page-link">1</span>
+                    </li>
+                    <li class="page-item">
+                      <a
+                        class="page-link"
+                        href="https://hexacom-admin.6amtech.com/admin/product/list?page=2"
+                        >2</a
+                      >
+                    </li>
+                    <li class="page-item">
+                      <a
+                        class="page-link"
+                        href="https://hexacom-admin.6amtech.com/admin/product/list?page=2"
+                        rel="next"
+                        aria-label="Next &raquo;"
+                        >&rsaquo;</a
+                      >
+                    </li>
+                  </ul>
+                </nav>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
