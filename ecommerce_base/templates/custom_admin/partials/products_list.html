@@ -1,0 +1,85 @@
+ {% for product in products %}
+              <tr>
+                <td>{{product|length}}</td>
+                <td>
+                  <span class="d-block font-size-sm text-body">
+                    <a
+                      href="#"
+                    >
+                      {{ product.title|slice:":50" }}...
+                    </a>
+                  </span>
+                </td>
+                <td>
+                  <div
+                    style="
+                      height: 100px;
+                      width: 100px;
+                      overflow-x: hidden;
+                      overflow-y: hidden;
+                    "
+                  >
+            <!--         <img
+                      src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-10-13-6166f8d45183d.png" 
+                      style="width: 100px"
+                      onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'"
+                    /> -->
+                        {% for image in product.product_image.all %}
+                          {% if image.is_feature%}
+                          <img class="img-fluid"  alt="Responsive image" src="{{ image.image.url }}"
+                            alt="{{ image.image.alt_text }}">
+                          {% endif %}
+                       {% endfor %}
+
+                  </div>
+                </td>
+
+                {% if product.is_active %}
+                <td>
+                  <div
+                    style="padding: 10px; border: 1px solid; cursor: pointer">
+                    <span class="legend-indicator bg-success"></span>Active
+                  </div>
+                </td>
+                {% else %}
+                <td>
+                  <div
+                    style="padding: 10px; border: 1px solid; cursor: pointer">
+                    <span class="legend-indicator bg-danger"></span>Disable
+                  </div>
+                </td>
+                {% endif %}
+
+                <td>{{product.regular_price}}$</td>
+                <td>
+                  <label class="badge badge-soft-info">{{product.stock}}</label>
+                </td>
+                <td>
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="tio-settings"></i>
+                    </button>
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+                      <a
+                        class="dropdown-item"
+                        href="{% url 'custom_admin:product_update' product.pk %}"
+                        >Edit</a>
+
+                        <a class="dropdown-item"  hx-confirm="Are you sure?"  hx-target="#set-rows" hx-delete="{% url 'custom_admin:product_delete' product.pk %}">Delete</a>
+
+                        
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}

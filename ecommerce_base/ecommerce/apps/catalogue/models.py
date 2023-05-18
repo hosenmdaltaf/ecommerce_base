@@ -76,6 +76,34 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
 
+    # def save(self, *args, **kwargs):
+    #     new_image = self.compress_images(self.image)  
+    
+    #     # asignar la nueva imagen con menor peso
+    #     self.image = new_image
+    #     super().save(*args, **kwargs)
+   
+
+    # def valid_extension(self,_img):
+    #     if '.jpg' in _img:
+    #         return "JPEG"
+    #     elif '.jpeg' in _img:
+    #         return "JPEG"
+    #     elif '.png' in _img:
+    #         return "PNG"
+
+
+    # def compress_images(self,image):
+    #     im = Image.open(image)
+    #     width, height = im.size
+    #     im = im.resize((width-50, height-50), PIL.Image.ANTIALIAS) 
+    #     # crear a BytesIO object
+    #     im_io = BytesIO() 
+    #     im.save(im_io, self.valid_extension(image.name) ,optimize=True, 
+    #     quality=70) 
+    #     new_image = File(im_io, name=image.name)
+    #     return new_image
+
 
 # class ProductType(models.Model):
 #     """

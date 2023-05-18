@@ -1,0 +1,74 @@
+{% extends 'custom_admin/admin_base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="content container-fluid">
+
+    {% for message in messages %}
+        <div class="container-fluid p-0">
+        <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="True">&times;</span>
+            </button>
+            {{ message }}
+        </div>
+        </div>
+    {% endfor %}
+
+
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col-sm mb-2 mb-sm-0">
+                <h1 class="page-header-title">
+                    <i class="tio-add-circle-outlined"></i> Add New Brand
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="row gx-2 gx-lg-3">
+        <div class="col-sm-12 col-lg-12 mb-3 mb-lg-2">
+            <form  method="POST" id="product_form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="card p-4  lang_form" id="en-form">
+                    <div class="form-group">
+                        <label class="input-label" for="en_name">Name</label>
+                        <input type="text" required name="name" id="en_name" class="form-control"
+                            placeholder="New Product">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="input-label" for="en_name">Slug</label>
+                        <input type="text" required name="slug" id="en_name" class="form-control"
+                            placeholder="Slug Name">
+                    </div>
+                </div>
+
+                <div id="from_part_2">
+                    <div class="row p-4">
+                        <div class="col-md-6 col-6">
+                            <div class="form-group">
+                                <label class="input-label">Active</label>
+                                <input class="form-check-input form-control" name="is_active" type="checkbox" >
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            <div class="form-group">
+                                <label class="input-label">Product Image<span style="color: red">* ( Ratio 1:1 )</span></label>
+                                 <input type="file" name="image" class="form-control" aria-label="file example" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+

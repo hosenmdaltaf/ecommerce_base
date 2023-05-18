@@ -1,0 +1,73 @@
+ {% for category in categories %}
+              <tr>
+                <td>{{category|length}}</td>
+                <td>
+                  <span class="d-block font-size-sm text-body">
+                    <a
+                      href="#"
+                    >
+                      {{ category.name }}
+                    </a>
+                  </span>
+                </td>
+                 <td>{{category.parent}}</td>
+                <td>
+                  <div
+                    style="
+                      height: 100px;
+                      width: 100px;
+                      overflow-x: hidden;
+                      overflow-y: hidden;
+                    ">  
+                    {% if category.image %}
+                      <img class="img-fluid"  alt="Responsive image" src="{{ category.image.url }}"
+                            alt="{{ category.image.alt_text }}">
+                    {% endif %}
+                  </div>
+                </td>
+
+                {% if category.is_active %}
+                <td>
+                  <div
+                    style="padding: 10px; border: 1px solid; cursor: pointer">
+                    <span class="legend-indicator bg-success"></span>Active
+                  </div>
+                </td>
+                {% else %}
+                <td>
+                  <div
+                    style="padding: 10px; border: 1px solid; cursor: pointer">
+                    <span class="legend-indicator bg-danger"></span>Disable
+                  </div>
+                </td>
+                {% endif %}
+        
+                <td>
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="tio-settings"></i>
+                    </button>
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+                      <a
+                        class="dropdown-item"
+                        href="{% url 'custom_admin:category_update' category.pk %}"
+                        >Edit</a> 
+                       
+                        <a class="dropdown-item"  hx-confirm="Are you sure?"  hx-target="#set-rows" hx-delete="{% url 'custom_admin:category_delete' category.pk %}">Delete</a> 
+
+                        
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}

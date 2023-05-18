@@ -1,0 +1,82 @@
+ {% for brand in brands %}
+              <tr>
+                <td>{{brand|length}}</td>
+                <td>
+                  <span class="d-block font-size-sm text-body">
+                    <a
+                      href="#"
+                    >
+                      {{ brand.name|slice:":50" }}...
+                    </a>
+                  </span>
+                </td>
+                <td>
+                  <div
+                    style="
+                      height: 100px;
+                      width: 100px;
+                      overflow-x: hidden;
+                      overflow-y: hidden;
+                    "
+                  >
+            <!--         <img
+                      src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-10-13-6166f8d45183d.png" 
+                      style="width: 100px"
+                      onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'"
+                    /> -->
+                        
+                          {% if brand.image %}
+                          <img class="img-fluid"  alt="Responsive image" src="{{ brand.image.url }}"
+                            alt="{{ brand.image.alt_text }}">
+                          {% endif %}
+                    
+
+                  </div>
+                </td>
+
+                {% if brand.is_active %}
+                <td>
+                  <div
+                    style="padding: 10px; border: 1px solid; cursor: pointer">
+                    <span class="legend-indicator bg-success"></span>Active
+                  </div>
+                </td>
+                {% else %}
+                <td>
+                  <div
+                    style="padding: 10px; border: 1px solid; cursor: pointer">
+                    <span class="legend-indicator bg-danger"></span>Disable
+                  </div>
+                </td>
+                {% endif %}
+
+        
+                <td>
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="tio-settings"></i>
+                    </button>
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+                      <a
+                        class="dropdown-item"
+                        href="{% url 'custom_admin:brand_update' brand.pk %}"
+                        >Edit</a> 
+                       
+                        <a class="dropdown-item"  hx-confirm="Are you sure?"  hx-target="#set-rows" hx-delete="{% url 'custom_admin:brand_delete' brand.pk %}">Delete</a> 
+
+                        
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}

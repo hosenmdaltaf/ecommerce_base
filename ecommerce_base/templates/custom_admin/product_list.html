@@ -14,6 +14,19 @@
     </div>
   </div>
 
+  {% if messages %}
+    {% for message in messages %}
+        <div class="container-fluid p-0">
+        <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="True">&times;</span>
+            </button>
+            {{ message }}
+        </div>
+        </div>
+    {% endfor %}
+  {% endif %}
+
   <div class="row gx-2 gx-lg-3">
     <div class="col-sm-12 col-lg-12 mb-3 mb-lg-2">
       <div class="card">
@@ -22,10 +35,7 @@
             class="row justify-content-between align-items-center flex-grow-1"
           >
             <div class="ml-3">
-              <form
-                action="https://hexacom-admin.6amtech.com/admin/product/list"
-                method="GET"
-              >
+              <form>
                 <div class="input-group">
                   <input
                     id="datatableSearch_"
@@ -48,7 +58,7 @@
             </div>
             <div class="col-md-6">
               <a
-                href="https://hexacom-admin.6amtech.com/admin/product/add-new"
+                href="{% url 'custom_admin:product_add' %}"
                 class="btn btn-primary float-right"
                 ><i class="tio-add-circle"></i> Add New Product
               </a>
@@ -56,10 +66,8 @@
           </div>
         </div>
 
-        <div class="table-responsive datatable-custom">
-          <table
-            class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
-          >
+        <div class="table-responsive ">
+          <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
             <thead class="thead-light">
               <tr>
                 <th>#</th>
@@ -73,93 +81,13 @@
             </thead>
             <tbody id="set-rows">
 
-            {% for product in products %}
-              <tr>
-                <td>1</td>
-                <td>
-                  <span class="d-block font-size-sm text-body">
-                    <a
-                      href="https://hexacom-admin.6amtech.com/admin/product/view/28"
-                    >
-                      {{product.title}}
-                    </a>
-                  </span>
-                </td>
-                <td>
-                  <div
-                    style="
-                      height: 100px;
-                      width: 100px;
-                      overflow-x: hidden;
-                      overflow-y: hidden;
-                    "
-                  >
-                    <img
-                      src="https://hexacom-admin.6amtech.com/storage/app/public/product/2021-10-13-6166f8d45183d.png"
-                      style="width: 100px"
-                      onerror="this.src='https://hexacom-admin.6amtech.com/public/assets/admin/img/160x160/img2.jpg'"
-                    />
-                  </div>
-                </td>
-                <td>
-                  <div
-                    style="padding: 10px; border: 1px solid; cursor: pointer"
-                    onclick="location.href='https://hexacom-admin.6amtech.com/admin/product/status/28/0'"
-                  >
-                    <span class="legend-indicator bg-success"></span>Active
-                  </div>
-                </td>
-                <td>{{product.regular_price}}$</td>
-                <td>
-                  <label class="badge badge-soft-info">{{product.stock}}</label>
-                </td>
-                <td>
-                  <div class="dropdown">
-                    <button
-                      class="btn btn-secondary dropdown-toggle"
-                      type="button"
-                      id="dropdownMenuButton"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      <i class="tio-settings"></i>
-                    </button>
-                    <div
-                      class="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton"
-                    >
-                      <a
-                        class="dropdown-item"
-                        href="{% url 'custom_admin:update_product' product.pk %}"
-                        >Edit</a
-                      >
-                      <a
-                        class="dropdown-item"
-                        href="javascript:"
-                        onclick="form_alert('product-28','Want to delete this item  ')"
-                        >Delete</a
-                      >
-                      <form
-                        action="https://hexacom-admin.6amtech.com/admin/product/delete/28"
-                        method="post"
-                        id="product-28"
-                      >
-                        <input
-                          type="hidden"
-                          name="_token"
-                          value="drfN3CLFzbTlMOYHtQrnNNlFlkaWjiOzhL3qiNWm"
-                        />
-                        <input type="hidden" name="_method" value="delete" />
-                      </form>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            {% endfor %}
+              {% include 'custom_admin/partials/products_list.html' %}
+
+           
               
             </tbody>
           </table>
+
           <hr />
           <div class="page-area">
             <table>
@@ -202,5 +130,12 @@
     </div>
   </div>
 </div>
+
+ <script type="text/javascript">
+  function delete_user(selected_user){
+        document.getElementById("item-delete-form").action = selected_user.href
+}
+</script>
+
 
 {% endblock %}
