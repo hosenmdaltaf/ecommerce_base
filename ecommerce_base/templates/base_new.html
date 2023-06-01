@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ogani | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'template_styles/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'template_styles/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'template_styles/css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'template_styles/css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'template_styles/css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'template_styles/css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'template_styles/css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'template_styles/css/style.css' %}" type="text/css">
+
+    {% block stylesheet %}
+    <!--- some stylesheet that apply to all pages -->
+    {% endblock %}
+
+</head>
+
+<body>
+
+    <!-- Page Preloder -->
+  <!--   <div id="preloder">
+        <div class="loader"></div>
+    </div> -->
+
+
+
+    {% include 'global/navbar.html' %}
+
+     {% block content %} 
+      {% endblock %}
+
+    {% include 'global/footer.html' %}
+
+  
+    <!-- Js Plugins -->
+    <script src="{% static 'template_styles/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'template_styles/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'template_styles/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'template_styles/js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'template_styles/js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'template_styles/js/mixitup.min.js' %}"></script>
+    <script src="{% static 'template_styles/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'template_styles/js/main.js' %}"></script>
+
+    {% block scripts %}
+    <!--- some scripts that apply to all pages -->
+    {% endblock %}
+
+</body>
+
+</html>

@@ -156,6 +156,12 @@ class Product(models.Model):
         help_text=_("Required"),
         max_length=255,
     )
+    thumbnail_image = models.ImageField(
+        verbose_name=_("image"),
+        help_text=_("Upload a product image"),
+        upload_to="images/",
+        default="images/default.png",
+    )
     category = models.ForeignKey(Category, on_delete=models.RESTRICT)
     brand = models.ForeignKey(Brand, on_delete=models.RESTRICT,null=True,blank=True)
     unit = models.IntegerField(
@@ -202,6 +208,8 @@ class Product(models.Model):
         help_text=_("Change product visibility"),
         default=False,
     )
+    is_feature = models.BooleanField(
+        help_text=_("Mark product feature "),default=False)
     created_at = models.DateTimeField(_("Created at"), auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(_("Updated at"), auto_now=True)
     users_wishlist = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="user_wishlist", blank=True)
