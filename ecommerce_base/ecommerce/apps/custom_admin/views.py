@@ -4,6 +4,7 @@ from django.contrib import messages #import messages
 from .forms import ProductUpdateForm,BrandUpdateForm,CategoryUpdateForm
 
 from ecommerce.apps.catalogue.models import Product,Category,Brand,ProductImage
+from ecommerce.apps.account.models import Customer
 
 # Create your views here.
 
@@ -183,10 +184,16 @@ def CategoryDeleteView(request,pk):
     category = Category.objects.get(pk=pk)
     category.delete()
     categories = Category.objects.all()
-    return render(request,'custom_admin/partials/categories_list.html',{'categories':categories})
+    return render(request,'custom_admin/partials/categories_list.html',{'categories':categories}) 
 
 
 # ----------------------Order CRUD---------------------------#
 
 def order_list(request):
     return render(request,'custom_admin/order_list.html')
+
+
+# ----------------------Customer CRUD---------------------------#
+def CustomerListView(request):
+    customers = Customer.objects.all()
+    return render(request,'custom_admin/customer_list.html',{'customers':customers})

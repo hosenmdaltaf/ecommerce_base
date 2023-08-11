@@ -27,4 +27,9 @@ urlpatterns = [
     
     # -----------------order CRUD-----------------#
     path('order_list/', views.order_list, name='order_list'), 
+
+    # -----------------Customer CRUD-----------------#
+    path('customer_list/', views.CustomerListView, name='customer_list'), 
+
+     
 ]

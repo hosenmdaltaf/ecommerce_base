@@ -1,24 +1,30 @@
-{% for category in categories %}
+{% for customer in customers %}
 <tr>
-  <td>{{category.id}}</td>
+  <td>{{customer.id}}</td>
   <td>
     <span class="d-block font-size-sm text-body">
       <a href="#">
-        {{ category.name|truncatechars:15 }} 
+        {{ customer.name|truncatechars:15 }} 
       </a>
     </span>
+    <span class="d-block font-size-sm text-body">
+        <a href="#">
+          {{ category.mobile|truncatechars:15 }} 
+        </a>
+      </span>
   </td>
-   <td>{{category.parent|truncatechars:15 }}</td>
+   <td>{{customer.email|truncatechars:15 }}</td> 
   <td>
     <div
       style="height: 100px; width: 100px; overflow-x: hidden; overflow-y: hidden;">  
-      {% if category.image %}
-        <img class="img-fluid"  alt="Responsive image" src="{{ category.image.url }}" alt="{{ category.image.alt_text }}">
+      {% if customer.image %}
+        <img class="img-fluid"  alt="Responsive image" src="{{ customer.image.url }}" alt="{{ customer.image.alt_text }}">
       {% endif %}
     </div>
   </td>
+  <td>{{customer.order.count }}</td> 
 
-  {% if category.is_active %}
+  {% if customer.is_active %}
   <td>
     <div style="padding: 10px; border: 1px solid; cursor: pointer">
       <span class="legend-indicator bg-success"></span>Active</div>
@@ -36,8 +42,8 @@
         <i class="tio-settings"></i>
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="{% url 'custom_admin:category_update' category.pk %}">Edit</a> 
-          <a class="dropdown-item"  hx-confirm="Are you sure?"  hx-target="#set-rows" hx-delete="{% url 'custom_admin:category_delete' category.pk %}">Delete</a> 
+        <a class="dropdown-item" href="{% url 'custom_admin:category_update' customer.pk %}">Edit</a> 
+          <a class="dropdown-item"  hx-confirm="Are you sure?"  hx-target="#set-rows" hx-delete="{% url 'custom_admin:category_delete' customer.pk %}">Delete</a> 
       </div>
     </div>
   </td>

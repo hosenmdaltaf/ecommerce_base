@@ -162,8 +162,10 @@ class Product(models.Model):
         upload_to="images/",
         default="images/default.png",
     )
-    category = models.ForeignKey(Category, on_delete=models.RESTRICT)
-    brand = models.ForeignKey(Brand, on_delete=models.RESTRICT,null=True,blank=True)
+    # category = models.ForeignKey(Category, on_delete=models.RESTRICT)
+    # brand = models.ForeignKey(Brand, on_delete=models.RESTRICT,null=True,blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE,null=True,blank=True)
     unit = models.IntegerField(
         default=1,
     )

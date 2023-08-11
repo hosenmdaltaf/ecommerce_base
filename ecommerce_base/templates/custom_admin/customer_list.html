@@ -7,7 +7,7 @@
     <div class="row align-items-center">
       <div class="col-sm mb-2 mb-sm-0">
         <h1 class="page-header-title">
-          <i class="tio-filter-list"></i> Brand List
+          <i class="tio-filter-list"></i> Customer List
           <span class="badge badge-soft-dark ml-2">27</span>
         </h1>
       </div>
@@ -58,9 +58,9 @@
             </div>
             <div class="col-md-6">
               <a
-                href="{% url 'custom_admin:brand_add' %}"
+                href="{% url 'custom_admin:category_add' %}"
                 class="btn btn-primary float-right"
-                ><i class="tio-add-circle"></i> Add New Brand
+                ><i class="tio-add-circle"></i> Add New Customer
               </a>
             </div>
           </div>
@@ -72,14 +72,16 @@
               <tr>
                 <th>#</th>
                 <th style="width: 30%">Name</th>
+                 <th>Parent</th>
                 <th style="width: 25%">Image</th>
+                <th>Order</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody id="set-rows">
 
-              {% include 'custom_admin/partials/brands_list.html' %}
+              {% include 'custom_admin/partials/customers_list.html' %}
                
             </tbody>
           </table>
@@ -126,7 +128,6 @@
     </div>
   </div>
 </div>
-
 
 
 {% endblock %}
